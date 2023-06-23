@@ -28,7 +28,7 @@ export const UserCard = () => {
         </div>
       </div>
       <div className="z-0 -mt-4 p-10 bg-dark_blue 2xl:h-[160px] rounded-b-xl">
-        <ul className="flex flex-col gap-2 text-lg cursor-pointer">
+        <ul className="flex flex-col gap-2 text-lg cursor-pointer transition-all">
           <li
             onClick={() =>
               setTimeSelect({
