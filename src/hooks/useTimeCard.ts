@@ -1,15 +1,21 @@
-import { ExerciseIcon, PlayIcon, SelfCareIcon, SocialIcon, StudyIcon, WorkIcon } from "@/components/ui";
-import { ReactElement, useEffect, useState } from "react";
+import {
+  ExerciseIcon,
+  PlayIcon,
+  SelfCareIcon,
+  SocialIcon,
+  StudyIcon,
+  WorkIcon,
+} from "@/components/ui";
+import { useEffect, useState } from "react";
 
 interface Theme {
   bg: string;
-  icon:() =>  JSX.Element;
+  icon: () => JSX.Element;
 }
 
 export const useTimeCard = (title: string) => {
   const [theme, setTheme] = useState<Theme>();
 
-  
   const setThemeByTitle = (title: string) => {
     switch (title) {
       case "Work":
@@ -33,13 +39,11 @@ export const useTimeCard = (title: string) => {
       default:
         setTheme({ bg: "bg-soft_orange", icon: WorkIcon });
         break;
-        }
-
     }
+  };
   useEffect(() => {
     setThemeByTitle(title);
   }, [title]);
 
-
-    return { theme };
-}
+  return { theme };
+};
