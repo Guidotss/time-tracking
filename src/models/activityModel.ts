@@ -7,7 +7,11 @@ export interface IActivity {
 }
 
 const activitySchema = new Schema({
-    title: { type: String, required: true },
+    title: { 
+        enum: ['Work', 'Study', 'Exercise', 'Social', 'Self-care', 'Play'],
+        type: String,
+        required: true,
+    },
     hours: { type: Number, required: true },
 });
 

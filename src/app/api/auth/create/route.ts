@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         status: 500,
       });
 
-    return new Response(JSON.stringify({ message: "User created",name:newUser.name, activity: newUser.activity }), {
+    return new Response(JSON.stringify({ message: "User created",name:newUser.name, activity: newUser.activity, id: newUser._id }), {
       status: 200,
     });
   } catch (error) {
