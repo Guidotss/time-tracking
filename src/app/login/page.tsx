@@ -9,8 +9,8 @@ interface UserInfo {
   password: string;
 }
 
-export default function RegisterPage() {
-  const { register } = useAuthStore();
+export default function LoginPage() {
+  const { login } = useAuthStore();
   const router = useRouter();
   const [userInfo, setUserInfo] = useState<UserInfo>({
     name: "",
@@ -21,7 +21,7 @@ export default function RegisterPage() {
     e.preventDefault();
     if (!userInfo.name || !userInfo.password)
       return alert("Please fill all the fields");
-    const ok = register(userInfo);
+    const ok = login(userInfo);
     if (!ok) return alert("An error ocurred");
     router.push("/");
   };
@@ -33,7 +33,7 @@ export default function RegisterPage() {
         onSubmit={handleSubmit}
       >
         <h1 className="text-3xl text-white text-center tracking-widest mb-5 mt-5">
-          Register
+          Login
         </h1>
         <input
           className="2xl:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
@@ -56,8 +56,8 @@ export default function RegisterPage() {
           Register
         </button>
         <div className="w-full text-end mt-10">
-          <Link href="/login">
-            <span className="text-slate-50 underline">Ya tienes cuenta?</span>
+          <Link href="/register">
+            <span className="text-slate-50 underline">Todavia no tiene cuenta?</span>
           </Link>
         </div>
       </form>

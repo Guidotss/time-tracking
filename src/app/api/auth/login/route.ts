@@ -1,4 +1,5 @@
 import "@/database/connect";
+import { signDocument } from "@/jwt";
 import { UserService } from "@/services";
 
 const userService = new UserService();
@@ -10,12 +11,17 @@ export async function POST(req: Request) {
   try {
     const user = await userService.login(name, password);
     if (!user) return new Response("User does not exist", { status: 404 });
+
+    const { _id } = user as unknown as { _id: string };
+    const token = signDocument(_id, name);
+
     return new Response(
       JSON.stringify({
         message: "User login successfully",
         name: user.name,
         activity: user.activity,
         id: user._id,
+        token,
       }),
       { status: 200 }
     );

@@ -1,7 +1,9 @@
 import { Activity } from "./activity";
 
 export interface User { 
-    id: string;
+    id?: string;
     name: string; 
-    activity: Activity[];
+    password: string;
+    token?: string;
+    activity?: Activity[];
 }
