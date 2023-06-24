@@ -17,11 +17,11 @@ export default function RegisterPage() {
     password: "",
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!userInfo.name || !userInfo.password)
       return alert("Please fill all the fields");
-    const ok = register(userInfo);
+    const ok = await register(userInfo);
     if (!ok) return alert("An error ocurred");
     router.push("/");
   };
