@@ -27,7 +27,6 @@ export const useAuthStore = create<UserStore>((set) => ({
         body: JSON.stringify({ name, password }),
       });
       const data = await response.json();
-      console.log(data);
       if (response.status === 200) {
         set({ user: data });
         Cookies.set("token", data.token);
@@ -64,5 +63,28 @@ export const useAuthStore = create<UserStore>((set) => ({
       return false;
     }
   },
-  revalidate: async () => {}
+  revalidate: async () => {
+    const token = Cookies.get("token");
+    if (!token) return;
+
+    try {
+      const response = await fetch("/api/auth/revalidate", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (response.status === 200) {
+        set({ user: data });
+        Cookies.set("token", data.token);
+      } else {
+        Cookies.remove("token");
+      }
+    } catch (error) {
+      console.log(error);
+      Cookies.remove("token");
+    }
+  },
 }));
