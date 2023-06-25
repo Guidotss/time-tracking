@@ -4,6 +4,7 @@ import { IActivity } from "./activityModel";
 interface IUser {
   name: string;
   password: string;
+  lastName: string; 
   activity: IActivity[];
 }
 

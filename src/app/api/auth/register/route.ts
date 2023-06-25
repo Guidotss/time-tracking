@@ -12,8 +12,6 @@ export async function POST(req: Request) {
         JSON.stringify({ error: "Missing name or password" }),
         { status: 400 }
       );
-
-    console.log(name, password, lastName);
     const newUser = await userService.createUser(name,lastName,password);
     if (!newUser)
       return new Response(JSON.stringify({ error: "Error creating user" }), {
@@ -21,13 +19,15 @@ export async function POST(req: Request) {
       });
 
     const { _id } = newUser as { _id: string };
+    console.log(lastName);
 
-    const token = signDocument(_id, name);
+    const token = signDocument(_id, name, lastName);
 
     return new Response(
       JSON.stringify({
         message: "User created",
         name: newUser.name,
+        lastName: newUser.lastName,
         activity: newUser.activity,
         id: newUser._id,
         token,

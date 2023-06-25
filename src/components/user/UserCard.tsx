@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useAuthStore } from "@/store";
 
@@ -10,7 +10,11 @@ export const UserCard = () => {
     monthly: false,
   });
 
-  const { user } = useAuthStore();
+  const { user, revalidate } = useAuthStore();
+
+  useEffect(() => {
+    revalidate();
+  },[]); 
 
   return (
     <div className="flex flex-col sm:ml-10">

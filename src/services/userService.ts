@@ -12,10 +12,14 @@ export class UserService {
     return await bcypt.compare(password, hashedPassword);
   }
 
-  public async createUser(name: string,lastName: string ,password: string) {
+  public async createUser(name: string, lastName: string, password: string) {
     try {
       const hashedPassword = await this.hashPassword(password);
-      const user = new this.userModel({ name,lastName,password: hashedPassword });
+      const user = new this.userModel({
+        name,
+        lastName,
+        password: hashedPassword,
+      });
       await user.save();
       return user;
     } catch (error) {
@@ -42,9 +46,13 @@ export class UserService {
     }
   };
 
-  public async getUserById(id: string) { 
+  public async getUserById(id: string) {
     try {
-      const user = await this.userModel.findById(id).populate("activity");
+      const user = await this.userModel
+        .findById(id)
+        .populate("activity")
+        .lean()
+        .select("-password");
       if (!user) {
         throw new Error("User does not exist");
       }

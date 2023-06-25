@@ -49,7 +49,7 @@ export const useAuthStore = create<UserStore>((set) => ({
         },
         body: JSON.stringify({ name, password, lastName }),
       });
-      const data = await response.json();
+      const data = await response.json(); 
 
       if (response.status === 200) {
         set({ user: data });
@@ -79,6 +79,8 @@ export const useAuthStore = create<UserStore>((set) => ({
       if (response.status === 200) {
         set({ user: data });
         Cookies.set("token", data.token);
+        set({ user: data.user });
+        console.log(data);
       } else {
         Cookies.remove("token");
       }
