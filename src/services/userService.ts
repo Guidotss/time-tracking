@@ -12,10 +12,10 @@ export class UserService {
     return await bcypt.compare(password, hashedPassword);
   }
 
-  public async createUser(name: string, password: string) {
+  public async createUser(name: string,lastName: string ,password: string) {
     try {
       const hashedPassword = await this.hashPassword(password);
-      const user = new this.userModel({ name, password: hashedPassword });
+      const user = new this.userModel({ name,lastName,password: hashedPassword });
       await user.save();
       return user;
     } catch (error) {

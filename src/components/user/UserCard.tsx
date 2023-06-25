@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useAuthStore } from "@/store";
 
 export const UserCard = () => {
   const [{ daily, weekly, monthly }, setTimeSelect] = useState({
@@ -8,6 +9,8 @@ export const UserCard = () => {
     weekly: false,
     monthly: false,
   });
+
+  const { user } = useAuthStore();
 
   return (
     <div className="flex flex-col">
@@ -23,8 +26,8 @@ export const UserCard = () => {
         </div>
         <div className="text-slate-50 mt-10 font-extralight">
           <span className="text-sm opacity-[0.8]">Report for</span>
-          <h1 className="text-4xl">Jeremy</h1>
-          <h1 className="text-4xl">Robson</h1>
+          <h1 className="text-4xl">{ user?.name }</h1>
+          <h1 className="text-4xl">{ user?.lastName }</h1>
         </div>
       </div>
       <div className="z-0 -mt-4 p-10 bg-dark_blue 2xl:h-[160px] rounded-b-xl">

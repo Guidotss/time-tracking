@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 
 interface UserStore {
   user: User | null;
+  revalidate: () => void;
   logout: () => void;
   login: (user: User) => Promise<boolean>;
   register: (user: User) => Promise<boolean>;
@@ -40,14 +41,14 @@ export const useAuthStore = create<UserStore>((set) => ({
     }
   },
   register: async (user) => {
-    const { name, password } = user;
+    const { name, password, lastName } = user;
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, password }),
+        body: JSON.stringify({ name, password, lastName }),
       });
       const data = await response.json();
 
@@ -63,4 +64,5 @@ export const useAuthStore = create<UserStore>((set) => ({
       return false;
     }
   },
+  revalidate: async () => {}
 }));

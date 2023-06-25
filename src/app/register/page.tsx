@@ -6,6 +6,7 @@ import { useAuthStore } from "@/store";
 
 interface UserInfo {
   name: string;
+  lastName: string;
   password: string;
 }
 
@@ -14,6 +15,7 @@ export default function RegisterPage() {
   const router = useRouter();
   const [userInfo, setUserInfo] = useState<UserInfo>({
     name: "",
+    lastName: "",
     password: "",
   });
 
@@ -21,6 +23,9 @@ export default function RegisterPage() {
     e.preventDefault();
     if (!userInfo.name || !userInfo.password)
       return alert("Please fill all the fields");
+    
+    
+
     const ok = await register(userInfo);
     if (!ok) return alert("An error ocurred");
     router.push("/");
@@ -32,16 +37,25 @@ export default function RegisterPage() {
         className="bg-dark_blue p-10 2xl:h-1/2 2xl:w-1/2 shadow-md flex flex-col items-center rounded-lg"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-3xl text-white text-center tracking-widest mb-5 mt-5">
+        <h1 className="text-3xl text-white text-center tracking-widest mb-5 ">
           Register
         </h1>
-        <input
-          className="2xl:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
-          type="text"
-          placeholder="Guido Olguin..."
-          value={userInfo.name}
-          onChange={(e) => setUserInfo({ ...userInfo, name: e.target.value })}
-        />
+        <div className="flex items-center gap-2">
+          <input
+            className="2xl:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
+            type="text"
+            placeholder="Guido..."
+            value={userInfo.name}
+            onChange={(e) => setUserInfo({ ...userInfo, name: e.target.value })}
+          />
+          <input
+            className="2xl:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
+            type="text"
+            placeholder="Olguin..."
+            value={userInfo.lastName}
+            onChange={(e) => setUserInfo({ ...userInfo, lastName: e.target.value })}
+          />
+        </div>
         <input
           className="2xl:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
           type="password"

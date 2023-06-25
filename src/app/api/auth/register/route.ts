@@ -5,14 +5,16 @@ import { signDocument } from "@/jwt/signDocument";
 const userService = new UserService();
 
 export async function POST(req: Request) {
-  const { name, password } = await req.json();
+  const { name, password, lastName } = await req.json();
   try {
     if (!name || !password)
       return new Response(
         JSON.stringify({ error: "Missing name or password" }),
         { status: 400 }
       );
-    const newUser = await userService.createUser(name, password);
+
+    console.log(name, password, lastName);
+    const newUser = await userService.createUser(name,lastName,password);
     if (!newUser)
       return new Response(JSON.stringify({ error: "Error creating user" }), {
         status: 500,
