@@ -57,7 +57,9 @@ export default function LoginPage() {
         </button>
         <div className="w-full text-end mt-10">
           <Link href="/register">
-            <span className="text-slate-50 underline">Todavia no tiene cuenta?</span>
+            <span className="text-slate-50 underline">
+              Todavia no tiene cuenta?
+            </span>
           </Link>
         </div>
       </form>
