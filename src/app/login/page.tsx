@@ -6,6 +6,7 @@ import { useAuthStore } from "@/store";
 
 interface UserInfo {
   name: string;
+  lastName?: string;
   password: string;
 }
 
@@ -29,21 +30,21 @@ export default function LoginPage() {
   return (
     <main className="flex items-center justify-center w-full h-screen">
       <form
-        className="bg-dark_blue p-10 2xl:h-1/2 2xl:w-1/2 shadow-md flex flex-col items-center rounded-lg"
+        className="bg-dark_blue p-10 2xl:h-1/2 md:w-1/2 shadow-md flex flex-col items-center rounded-lg"
         onSubmit={handleSubmit}
       >
         <h1 className="text-3xl text-white text-center tracking-widest mb-5 mt-5">
           Login
         </h1>
         <input
-          className="2xl:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
+          className="sm:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
           type="text"
           placeholder="Guido Olguin..."
           value={userInfo.name}
           onChange={(e) => setUserInfo({ ...userInfo, name: e.target.value })}
         />
         <input
-          className="2xl:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
+          className="sm:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
           type="password"
           placeholder="**********"
           value={userInfo.password}
@@ -52,8 +53,8 @@ export default function LoginPage() {
             setUserInfo({ ...userInfo, password: e.target.value })
           }
         />
-        <button className="bg-soft_orange 2xl:w-[300px] py-2 rounded-lg mt-10 text-slate-50 hover:opacity-[0.8] transition-all">
-          Register
+        <button className="bg-soft_orange 2xl:w-[300px] sm:w-[280px] py-2 rounded-lg mt-10 text-slate-50 hover:opacity-[0.8] transition-all">
+          Login
         </button>
         <div className="w-full text-end mt-10">
           <Link href="/register">

@@ -13,8 +13,8 @@ export const UserCard = () => {
   const { user } = useAuthStore();
 
   return (
-    <div className="flex flex-col">
-      <div className="bg-violet 2xl:h-[400px] 2xl:w-[270px] rounded-xl p-8 z-10">
+    <div className="flex flex-col sm:ml-10">
+      <div className="bg-violet 2xl:h-[400px] 2xl:w-[270px] sm:w-[240px] sm:h-[300px] rounded-xl p-8 z-10">
         <div className="border-solid border-4 border-white rounded-full w-[100px] shadow-xl">
           <Image
             className="roudned-full"

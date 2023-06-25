@@ -57,7 +57,7 @@ export default function RegisterPage() {
           />
         </div>
         <input
-          className="2xl:w-1/2 mt-10 p-3 rounded-md bg-gray-700 text-white"
+          className="2xl:w-1/2 sm:w-[420px] mt-10 p-3 rounded-md bg-gray-700 text-white"
           type="password"
           placeholder="**********"
           value={userInfo.password}
@@ -66,7 +66,7 @@ export default function RegisterPage() {
             setUserInfo({ ...userInfo, password: e.target.value })
           }
         />
-        <button className="bg-soft_orange 2xl:w-[300px] py-2 rounded-lg mt-10 text-slate-50 hover:opacity-[0.8] transition-all">
+        <button className="bg-soft_orange sm:w-[300px] py-2 rounded-lg mt-10 text-slate-50 hover:opacity-[0.8] transition-all">
           Register
         </button>
         <div className="w-full text-end mt-10">

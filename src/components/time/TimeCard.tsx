@@ -48,7 +48,7 @@ export const TimeCard: FC<TimeCardProps> = ({ title }) => {
   
 
   return (
-    <div className="w-[300px] flex flex-col p-10 h-[300px]">
+    <div className="w-[300px] flex flex-col p-10 2xl:h-[300px] sm:-mt-4">
       <div className={`${theme?.bg} text-slate-50 h-[100px] flex justify-between rounded-xl z-0`}>
         <div/>
         <div className="mr-3">
