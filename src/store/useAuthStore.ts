@@ -49,7 +49,7 @@ export const useAuthStore = create<UserStore>((set) => ({
         },
         body: JSON.stringify({ name, password, lastName }),
       });
-      const data = await response.json(); 
+      const data = await response.json();
 
       if (response.status === 200) {
         set({ user: data });

@@ -51,7 +51,6 @@ export class UserService {
       const user = await this.userModel
         .findById(id)
         .populate("activity")
-        .lean()
         .select("-password");
       if (!user) {
         throw new Error("User does not exist");
