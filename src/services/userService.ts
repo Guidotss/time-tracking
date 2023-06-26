@@ -48,10 +48,7 @@ export class UserService {
 
   public async getUserById(id: string) {
     try {
-      const user = await this.userModel
-        .findById(id)
-        .populate("activity")
-        .select("-password");
+      const user = await this.userModel.findById(id).lean();
       if (!user) {
         throw new Error("User does not exist");
       }
@@ -59,6 +56,24 @@ export class UserService {
     } catch (error) {
       console.log(error);
       throw new Error("Error getting user");
+    }
+  }
+
+
+  public async increaseHours(activityId: string, hours: number) {
+    try {
+      const user = await this.userModel.findOneAndUpdate(
+        { "activities._id": activityId },
+        { $inc: { "activities.$.hours": hours } },
+        { new: true }
+      );
+      if (!user) {
+        throw new Error("User does not exist");
+      }
+      return user;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Error increasing hours");
     }
   }
 }

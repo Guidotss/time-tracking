@@ -1,18 +1,35 @@
+import { Activity } from "@/interfaces";
 import mongoose, { Model, Schema } from "mongoose";
-import { IActivity } from "./activityModel";
+
 
 interface IUser {
   name: string;
   password: string;
-  lastName: string; 
-  activity: IActivity[];
+  lastName: string;
+  activities: Activity[];
 }
+
+const activitySchema = new Schema({
+  title: { type: String, required: true },
+  hours: { type: Number, required: true },
+});
 
 const UserSchema = new Schema({
   name: { type: String, required: true },
   lastName: { type: String, required: true },
   password: { type: String, required: true },
-  activity: [{type: Schema.Types.ObjectId,ref: "Activity",}],
+  activities: {
+    type: [activitySchema],
+    required: false,
+    default: [
+      { title: "Work", hours: 0 },
+      { title: "Play", hours: 0 },
+      { title: "Study", hours: 0 },
+      { title: "Exercise", hours: 0 },
+      { title: "Social", hours: 0 },
+      { title: "Self-care", hours: 0 },
+    ],
+  },
 });
 
 const userModel: Model<IUser> =

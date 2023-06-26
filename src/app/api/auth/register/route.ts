@@ -1,6 +1,7 @@
 import { UserService } from "@/services";
 import "@/database/connect";
 import { signDocument } from "@/jwt/signDocument";
+import { Activity } from "@/interfaces";
 
 const userService = new UserService();
 
@@ -18,17 +19,17 @@ export async function POST(req: Request) {
         status: 500,
       });
 
-    const { _id } = newUser as { _id: string };
+    const { _id, activities } = newUser as unknown  as { _id: string, activities: Activity[] };
     console.log(lastName);
 
-    const token = signDocument(_id, name, lastName);
+    const token = signDocument(_id, name, lastName, activities);
 
     return new Response(
       JSON.stringify({
         message: "User created",
         name: newUser.name,
         lastName: newUser.lastName,
-        activity: newUser.activity,
+        activities,
         id: newUser._id,
         token,
       }),

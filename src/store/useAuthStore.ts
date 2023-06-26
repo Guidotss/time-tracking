@@ -29,13 +29,16 @@ export const useAuthStore = create<UserStore>((set) => ({
       const data = await response.json();
       if (response.status === 200) {
         set({ user: data });
+        console.log(data);
         Cookies.set("token", data.token);
+        localStorage.setItem("Activities", JSON.stringify(data.activities));
         return true;
       }
       return false;
     } catch (error) {
       console.log(error);
       Cookies.remove("token");
+      localStorage.removeItem("Activities");
       return false;
     }
   },
@@ -54,12 +57,14 @@ export const useAuthStore = create<UserStore>((set) => ({
       if (response.status === 200) {
         set({ user: data });
         Cookies.set("token", data.token);
+        localStorage.setItem("Activities", JSON.stringify(data.activities));
         return true;
       }
       return false;
     } catch (error) {
       console.log(error);
       Cookies.remove("token");
+      localStorage.removeItem("Activities");
       return false;
     }
   },
@@ -80,13 +85,15 @@ export const useAuthStore = create<UserStore>((set) => ({
         set({ user: data });
         Cookies.set("token", data.token);
         set({ user: data.user });
-        console.log(data);
+        localStorage.setItem("Activities", JSON.stringify(data.user.activities));
       } else {
         Cookies.remove("token");
+        localStorage.removeItem("Activities");
       }
     } catch (error) {
       console.log(error);
       Cookies.remove("token");
+      localStorage.removeItem("Activities");
     }
   },
 }));

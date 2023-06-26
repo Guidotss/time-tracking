@@ -10,7 +10,7 @@ import {
   WorkIcon,
   TimeSelect,
 } from "@/components/ui";
-import { useActivityStore } from "@/store";
+import { useActivityStore, useAuthStore } from "@/store";
 import { Activity } from "@/interfaces";
 
 interface TimeCardProps {
@@ -23,18 +23,14 @@ interface Theme {
 
 export const TimeCard: FC<TimeCardProps> = ({ activity }) => {
   const [isSelectOpen, setIsSelectOpen] = useState<boolean>();
-  const [ hourSelected, setHourSelected ] = useState<number>(0);
   const [theme, setTheme] = useState<Theme>();
-  const { setHours } = useActivityStore();
+  const { setHours, setActivities } = useActivityStore();
+  const { user } = useAuthStore();
 
   const handleSetHours = (hours: number) => {
-    setHours(activity.title, hours);
-  }
-
-
-
-  
-  
+    
+    setHours(activity._id!,user!.id! ,hours);
+  };
 
   const setThemeByTitle = (title: string) => {
     switch (title) {
@@ -64,8 +60,8 @@ export const TimeCard: FC<TimeCardProps> = ({ activity }) => {
 
   useEffect(() => {
     setThemeByTitle(activity.title);
-  },[activity.title]);
-  
+  }, [activity.title]);
+
 
   return (
     <div className="w-[300px] flex flex-col p-10 2xl:h-[300px] sm:-mt-4">
@@ -77,7 +73,9 @@ export const TimeCard: FC<TimeCardProps> = ({ activity }) => {
       </div>
       <div className="bg-dark_blue z-10 flex flex-col p-7 justify-center rounded-xl -mt-14">
         <div className="flex justify-between">
-          <h1 className="text-lg text-slate-50 font-light ">{activity.title}</h1>
+          <h1 className="text-lg text-slate-50 font-light ">
+            {activity.title}
+          </h1>
           <div
             className="cursor-pointer"
             onClick={() => setIsSelectOpen(!isSelectOpen)}
@@ -85,14 +83,15 @@ export const TimeCard: FC<TimeCardProps> = ({ activity }) => {
             <EllipsisIcon />
             {isSelectOpen && (
               <div className="z-30 absolute">
-                <TimeSelect 
-                  setHoursSelected={ handleSetHours }
-                />
+                <TimeSelect setHoursSelected={handleSetHours} />
               </div>
             )}
           </div>
         </div>
-        <h1 className="text-4xl text-slate-50 font-light mt-2 "> { activity.hours }</h1>
+        <h1 className="text-4xl text-slate-50 font-light mt-2 ">
+          {" "}
+          {activity.hours} hs
+        </h1>
         <h1 className="text-md text-slate-50 font-light mt-2 opacity-[0.4]">
           Last Week 5hs
         </h1>
