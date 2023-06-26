@@ -13,14 +13,16 @@ export async function POST(req: Request) {
         JSON.stringify({ error: "Missing name or password" }),
         { status: 400 }
       );
-    const newUser = await userService.createUser(name,lastName,password);
+    const newUser = await userService.createUser(name, lastName, password);
     if (!newUser)
       return new Response(JSON.stringify({ error: "Error creating user" }), {
         status: 500,
       });
 
-    const { _id, activities } = newUser as unknown  as { _id: string, activities: Activity[] };
-    console.log(lastName);
+    const { _id, activities } = newUser as unknown as {
+      _id: string;
+      activities: Activity[];
+    };
 
     const token = signDocument(_id, name, lastName, activities);
 

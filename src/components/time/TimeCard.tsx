@@ -24,12 +24,12 @@ interface Theme {
 export const TimeCard: FC<TimeCardProps> = ({ activity }) => {
   const [isSelectOpen, setIsSelectOpen] = useState<boolean>();
   const [theme, setTheme] = useState<Theme>();
-  const { setHours, setActivities } = useActivityStore();
+
+  const { setHours } = useActivityStore();
   const { user } = useAuthStore();
 
   const handleSetHours = (hours: number) => {
-    
-    setHours(activity._id!,user!.id! ,hours);
+    setHours(activity._id!, user!.id!, hours);
   };
 
   const setThemeByTitle = (title: string) => {
@@ -61,7 +61,6 @@ export const TimeCard: FC<TimeCardProps> = ({ activity }) => {
   useEffect(() => {
     setThemeByTitle(activity.title);
   }, [activity.title]);
-
 
   return (
     <div className="w-[300px] flex flex-col p-10 2xl:h-[300px] sm:-mt-4">

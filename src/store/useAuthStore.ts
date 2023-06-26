@@ -29,7 +29,6 @@ export const useAuthStore = create<UserStore>((set) => ({
       const data = await response.json();
       if (response.status === 200) {
         set({ user: data });
-        console.log(data);
         Cookies.set("token", data.token);
         localStorage.setItem("Activities", JSON.stringify(data.activities));
         return true;
@@ -85,7 +84,10 @@ export const useAuthStore = create<UserStore>((set) => ({
         set({ user: data });
         Cookies.set("token", data.token);
         set({ user: data.user });
-        localStorage.setItem("Activities", JSON.stringify(data.user.activities));
+        localStorage.setItem(
+          "Activities",
+          JSON.stringify(data.user.activities)
+        );
       } else {
         Cookies.remove("token");
         localStorage.removeItem("Activities");

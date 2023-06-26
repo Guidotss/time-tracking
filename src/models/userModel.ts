@@ -1,7 +1,6 @@
 import { Activity } from "@/interfaces";
 import mongoose, { Model, Schema } from "mongoose";
 
-
 interface IUser {
   name: string;
   password: string;

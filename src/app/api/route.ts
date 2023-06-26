@@ -1,5 +1,4 @@
-import { UserService } from '@/services';
-
+import { UserService } from "@/services";
 
 const userService = new UserService();
 
@@ -15,5 +14,4 @@ export async function POST(req: Request) {
       status: 500,
     });
   }
-
 }

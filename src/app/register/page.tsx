@@ -23,8 +23,6 @@ export default function RegisterPage() {
     e.preventDefault();
     if (!userInfo.name || !userInfo.password)
       return alert("Please fill all the fields");
-    
-    
 
     const ok = await register(userInfo);
     if (!ok) return alert("An error ocurred");
@@ -53,7 +51,9 @@ export default function RegisterPage() {
             type="text"
             placeholder="Olguin..."
             value={userInfo.lastName}
-            onChange={(e) => setUserInfo({ ...userInfo, lastName: e.target.value })}
+            onChange={(e) =>
+              setUserInfo({ ...userInfo, lastName: e.target.value })
+            }
           />
         </div>
         <input

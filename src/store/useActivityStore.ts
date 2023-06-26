@@ -5,7 +5,7 @@ interface ActivityStore {
   activities: Activity[];
   activity: string;
 
-  setHours: (activityId: string,userId: string,hours: number) => void
+  setHours: (activityId: string, userId: string, hours: number) => void;
   setActivities: () => void;
 }
 
@@ -13,8 +13,8 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
   activity: "",
   activities: [],
 
-  setHours: (activityId: string,userId: string,hours: number) => {
-    get().activities.map( async (activity) => {
+  setHours: (activityId: string, userId: string, hours: number) => {
+    get().activities.map(async (activity) => {
       if (activity._id === activityId) {
         activity.hours += hours;
         set({ activities: get().activities });
@@ -26,7 +26,10 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
           body: JSON.stringify({ hours, activityId, userId }),
         });
         const data = await response.json();
-        localStorage.setItem("Activities", JSON.stringify(data.user.activities));
+        localStorage.setItem(
+          "Activities",
+          JSON.stringify(data.user.activities)
+        );
       }
     });
   },

@@ -1,1 +1,0 @@
-export const activityName = [ 'Work','Play','Study','Exercise','Social','Self Care', ]as const;

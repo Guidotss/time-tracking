@@ -13,15 +13,19 @@ export async function POST(req: Request) {
     const user = await userService.login(name, password);
     if (!user) return new Response("User does not exist", { status: 404 });
 
-    const { _id, lastName, activities } = user as unknown as { _id: string, lastName: string, activities: Activity[] };
+    const { _id, lastName, activities } = user as unknown as {
+      _id: string;
+      lastName: string;
+      activities: Activity[];
+    };
     const token = signDocument(_id, name, lastName, activities);
-    
+
     return new Response(
       JSON.stringify({
         message: "User login successfully",
         name: user.name,
         lastName: user.lastName,
-        activities, 
+        activities,
         id: user._id,
         token,
       }),

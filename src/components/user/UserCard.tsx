@@ -14,7 +14,7 @@ export const UserCard = () => {
 
   useEffect(() => {
     revalidate();
-  },[]); 
+  }, []);
 
   return (
     <div className="flex flex-col sm:ml-10">
@@ -30,8 +30,8 @@ export const UserCard = () => {
         </div>
         <div className="text-slate-50 mt-10 font-extralight">
           <span className="text-sm opacity-[0.8]">Report for</span>
-          <h1 className="text-4xl">{ user?.name }</h1>
-          <h1 className="text-4xl">{ user?.lastName }</h1>
+          <h1 className="text-4xl">{user?.name}</h1>
+          <h1 className="text-4xl">{user?.lastName}</h1>
         </div>
       </div>
       <div className="z-0 -mt-4 p-10 bg-dark_blue 2xl:h-[160px] rounded-b-xl">
@@ -45,7 +45,11 @@ export const UserCard = () => {
               })
             }
           >
-            <h4 className={`${daily ? "text-slate-50" : "text-gray-400 opacity-[0.6]"}`}>
+            <h4
+              className={`${
+                daily ? "text-slate-50" : "text-gray-400 opacity-[0.6]"
+              }`}
+            >
               Daily
             </h4>
           </li>
