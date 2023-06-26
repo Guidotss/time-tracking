@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.time-select-scroll::-webkit-scrollbar{
+    width: 8px;
+    background: #1C204B;
+    border-radius: 10px;
+}
+
+.time-select-scroll::-webkit-scrollbar-thumb{
+    background: #5747EA;
+    border-radius: 10px; 
+
+}

@@ -24,7 +24,7 @@ module.exports = {
         'pale_blue':           '#F2F2F2',
         'very_dark_blue':      '#0E1323',
         'desaturated_blue':    '#57A5CC',
-        'soft_yellow':              '#F1C75B'
+        'soft_yellow':         '#F1C75B',
       }
     },
   },
